@@ -32,3 +32,19 @@ end
 ---@return number
 function Scene:GetMonsterCountByName(monsterName)
 end
+
+--- 获取场景所有精灵Id  
+--- @return number[] 精灵Id列表  
+function Scene:GetAllSpiritUid() 
+
+end
+  
+--- 处理异常玩家  
+--- @return number 处理的异常玩家数量  
+function Scene:HandleExceptionPlayer()  
+end  
+  
+--- 是否销毁  
+--- @return boolean 是否已销毁  
+function Scene:IsDestroy()  
+end

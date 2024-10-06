@@ -34,3 +34,19 @@ end
 --- @param player Player
 function Npc:OpenShop(player)
 end
+
+--- 打开合成界面
+--- @param player Player
+--- @param type number 1人族 2精灵族
+function Npc:OpenSynthesis(player, type)
+end
+
+--- 打开或者刷新城主面板  
+--- @param player Player 玩家对象指针  
+--- @param guildName string 行会名称  
+--- @param master string 城主名称  
+--- @param gold number 城主金币数量  
+--- @param param1 number 参数1  
+--- @param param2 number 参数2  
+function Npc:OpenOrRefreshCastlePanel(player, guildName, master, gold, param1, param2)  
+end

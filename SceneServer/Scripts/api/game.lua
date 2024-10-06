@@ -4,12 +4,12 @@ Game = {}
 
 
 --- 获取服务器Code
---- @return int64_t
+--- @return number
 function Game:ServerCode()
 end
 
 --- 获取服务器Uid
---- @return int64_t
+--- @return number
 function Game:ServerUid()
 end
 
@@ -19,19 +19,21 @@ function Game:IsMainScene()
 end
 
 --- 生成怪物
---- @param idx int32_t
---- @param x int32_t
---- @param y int32_t
+--- @param idx number
+--- @param x number
+--- @param y number
 --- @returns Monster
 function Game:CreateMonsterByIdx(idx, x, y)
 end
 
 --- 生成怪物
 --- @param name string
---- @param x int32_t
---- @param y int32_t
+--- @param sceneName string
+--- @param x number
+--- @param y number
+--- @param z number
 --- @returns Monster
-function Game:CreateMonsterByName(name, x, y)
+function Game:CreateMonsterByName(name, sceneName, x, y, z)
 end
 
 --- 创建一个场景
@@ -42,33 +44,33 @@ end
 
 --- 获取坐标点周围所有对象
 --- @param sceneName string
---- @param x int32_t
---- @param y int32_t
---- @param range int32_t
+--- @param x number
+--- @param y number
+--- @param range number
 --- @returns vector<ISpirit*>
 function Game:GetNearbySpirits(sceneName, x, y, range)
 end
 
 --- 发送系统消息给全服玩家
---- @param msgType uint8_t
+--- @param msgType number
 --- @param msg string
 function Game:SendMsg(msgType, msg)
 end
 
 --- 通过玩家名字获取玩家Id
 --- @param name string
---- @returns int64_t
+--- @returns number
 function Game:GetPlayerIdByName(name)
 end
 
 --- 通过玩家id获取玩家名字
---- @param id int64_t
+--- @param id number
 --- @returns string
 function Game:GetPlayerNameById(id)
 end
 
 --- 获取全部在线玩家
---- @returns int64_t
+--- @returns number
 function Game:GetTotalPlayer()
 end
 
@@ -82,7 +84,7 @@ end
 --- 设置玩家整型自定义变量(写入到数据库)
 --- @param playerName string
 --- @param key string
---- @param val int64_t
+--- @param val number
 function Game:SetNumberVar(playerName, key, val)
 end
 
@@ -106,13 +108,13 @@ function Game:KickPlayerByName(nickName)
 end
 
 --- 通过id获取玩家对象
---- @param id int64_t
+--- @param id number
 --- @returns Player
 function Game:GetPlayerById(id)
 end
 
 --- 通过Uid获取玩家对象
---- @param uid uint32_t
+--- @param uid unumber
 --- @returns Player
 function Game:GetPlayerByUid(uid)
 end
@@ -153,25 +155,25 @@ end
 
 --- 获取全局变量
 --- @param key string
---- @param def int64_t
---- @return int64_t
+--- @param def number
+--- @return number
 function Game:GetNumber(key, def)
 end
 
 --- 设置全局变量(多场景不安全)
 --- @param key string
---- @param val int64_t
+--- @param val number
 --- @param isSave boolean
 function Game:SetNumber(key, val, isSave)
 end
 
 --- 移除怪物
----@param monsterUid uint32_t
+---@param monsterUid number
 function Game:RemoveMonsterByUid(monsterUid)
 end
 
 --- 通过Uid获取怪物对象
----@param uid uint32_t
+---@param uid number
 ---@return Monster
 function Game:GetMonsterByUid(uid)
 end
@@ -181,3 +183,103 @@ end
 ---@return table
 function Game:GetPlayerAll()
 end
+
+--- 原生Sql查询  
+--- @param sql string SQL查询语句  
+--- @param callback function 回调函数  
+function Game:SqlQuery(sql, callback)  
+end  
+  
+--- 通过uid获取精灵对象  
+--- @param uid number 精灵UID  
+--- @return Spirit 精灵对象  
+function Game:GetSpiritByUid(uid)  
+end  
+  
+--- 通过行会名获取行会信息  
+--- @param guildName string 行会名称  
+--- @return Guild 行会对象  
+function Game:GetGuildByName(guildName)
+end  
+  
+--- Lua 生成怪物  
+--- @param monsterName string 怪物名称  
+--- @param sceneName string 场景名称  
+--- @param x number X坐标  
+--- @param y number Y坐标  
+--- @param z number Z坐标（默认为0）  
+--- @return Monster 怪物对象指针  
+function Game:LuaCreateMonsterByName(monsterName, sceneName, x, y, z)  
+end  
+  
+--- 新增游戏日志  
+--- @param eventId emLogEvent 事件ID  
+--- @param desc string 描述  
+--- @param player Player 玩家对象  
+--- @param item Item 物品对象  
+--- @param monster Monster 怪物对象  
+function Game:AddGameLog(eventId, desc, player, item, monster)  
+end  
+  
+--- 获取当前时间  
+--- @return string 当前时间字符串  
+function Game:GetTime()  
+end  
+  
+--- 获取坐标点周围指定对象  
+--- @param sceneName string 场景名称  
+--- @param x number X坐标  
+--- @param y number Y坐标  
+--- @param range number 范围  
+--- @param spiritType emSpiritType 精灵类型  
+--- @return table<Spirit> 精灵对象列表  
+function Game:GetNearbySpiritsByType(sceneName, x, y, range, spiritType)  
+end  
+  
+--- 获得单个怪物战利品  
+--- @param playerUid number 玩家UID  
+--- @param monsterName string 怪物名称  
+--- @return Item[] 物品对象列表  
+function Game:GetMonsterLoot(playerUid, monsterName)  
+end  
+  
+--- 投掷一个物品在地图上  
+--- @param item Item 物品对象  
+--- @param sceneName string 场景名称  
+--- @param x number X坐标  
+--- @param y number Y坐标  
+--- @param z number Z坐标  
+--- @param time number 物品在地图上存在的时间  
+--- @param pickMask number 拾取掩码  
+function Game:ThrowItem(item, sceneName, x, y, z, time, pickMask)  
+end  
+  
+--- 通过Uid移除Npc  
+--- @param uid number Npc UID  
+function Game:RemoveNpcByUid(uid)  
+end  
+  
+--- 重新加载怪物分布配置  
+function Game:ReloadMonsterGen()  
+end  
+  
+--- 获取玩家对象数量  
+--- @return number 玩家对象数量  
+function Game:GetPlayerObjectCount()  
+end  
+  
+--- 获取活跃玩家对象数量  
+--- @return number 活跃玩家对象数量  
+function Game:GetPlayerObjectActiveCount()  
+end  
+  
+--- 设置游戏核心线程绑定CPU核心  
+--- @param coreMask number CPU核心掩码  
+--- @return boolean 设置是否成功  
+function Game:SetGameThreadAffinityMask(coreMask)  
+end  
+  
+--- 清理异常玩家  
+--- @return number 清理的玩家数量  
+function Game:HandleExceptionPlayer()  
+end  
